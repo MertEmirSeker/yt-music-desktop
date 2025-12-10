@@ -1,7 +1,7 @@
  
-// wxWidgets "Hello World" Program
+// Trying to develop yt-music desktop app using wxWidgets
  
-// For compilers that support precompilation, includes "wx/wx.h".
+
 #include <wx/wxprec.h>
  
 #ifndef WX_PRECOMP
@@ -12,32 +12,53 @@ class MyApp : public wxApp
 {
 public:
     virtual bool OnInit();
+    const wxString get_title();
+    const wxPoint get_position();
+private:
+	const wxString title="Youtube Music Desktop App";
+	const wxPoint position{0,0};	
 };
 
 class MyFrame : public wxFrame
 {
 		public:
-			MyFrame();
+			MyFrame(wxWindow* parent, wxWindowID id, const wxString title, const wxPoint position);
 			
 		private:
 			
+			
+			
 };
 
-wxIMPLEMENT_APP(MyApp);
 
-bool MyApp::OnInit()
+//getter for title
+const wxString MyApp::get_title()
 {
-	MyFrame *frame=new MyFrame();
-	frame->Show(true);
-	return true;
+	return title;
+}
+// getter for position but it changes nothing. no idea.
+const wxPoint MyApp::get_position()
+{
+	return position;
 }
 
-MyFrame::MyFrame() : wxFrame(NULL,wxID_ANY, "YT MUSIC")
-{
+MyFrame::MyFrame(wxWindow* parent, wxWindowID id, const wxString title,const wxPoint position) 
+	: wxFrame(parent, id, title, position, wxSize(800,600), wxDEFAULT_FRAME_STYLE & ~(wxCAPTION|wxSYSTEM_MENU|wxMINIMIZE_BOX|wxMAXIMIZE_BOX)) // added for removing title bar so I can add my own title bar.
+{	// to add my own title bar I need to use wxPanel or ...
 		wxMenu *menuFile= new wxMenu;
 		
 		CreateStatusBar();
 		SetStatusText("Welcome to YT MUSIC!");
 		
 		
+}
+
+wxIMPLEMENT_APP(MyApp);
+
+bool MyApp::OnInit()
+{
+	MyFrame *frame=new MyFrame(nullptr,wxID_ANY,get_title(),get_position());
+	frame->Maximize(true);
+	frame->Show(true);
+	return true;
 }

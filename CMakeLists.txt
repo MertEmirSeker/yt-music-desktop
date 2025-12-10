@@ -6,7 +6,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 
 find_package(wxWidgets REQUIRED COMPONENTS core base)
-
 include(${wxWidgets_USE_FILE})
 
 
