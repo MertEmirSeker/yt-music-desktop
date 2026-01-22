@@ -1,6 +1,8 @@
 #ifndef WX_PRECOMP
 
 #include <wx/wx.h>
+#include <wx/stdpaths.h>
+#include <wx/filename.h>
 
 
 class MyApp : public wxApp

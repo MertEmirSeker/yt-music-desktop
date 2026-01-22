@@ -4,7 +4,6 @@
 
 #include <wx/wxprec.h>
 #include "../src/frame.cpp"
-#include "../src/title_bar.cpp"
 #include "../headers/wx.h"
 
 //getter for title
@@ -22,6 +21,17 @@ wxIMPLEMENT_APP(MyApp);
 
 bool MyApp::OnInit()
 {
+	SetVendorName("Mert");
+	SetAppName("YtMusicDesktop");
+
+	wxString dataDir=wxStandardPaths::Get().GetUserDataDir();
+
+	if(!wxFileName::DirExists(dataDir))
+		wxFileName::Mkdir(dataDir,wxS_DIR_DEFAULT,wxPATH_MKDIR_FULL);
+    
+    std::cout << "Data Directory: " << dataDir << std::endl;
+
+
 	MyFrame *frame=new MyFrame(nullptr,wxID_ANY,get_title(),get_position());
 	frame->Maximize(true);
 	frame->Show(true);
